@@ -6,14 +6,18 @@ public class Main {
     public static void main(String[] args) {
             Server server = Server.getServerInstance();
 
-            Reader1Thread thread1 = new Reader1Thread(server);
-            Reader2Thread thread2 = new Reader2Thread(server);
-            Editor1Thread thread3 = new Editor1Thread(server);
+            George thread1 = new George(server);
+            Ancuta thread2 = new Ancuta(server);
+            Schnitzel thread3 = new Schnitzel(server);
+            Vasile_Editor thread4 = new Vasile_Editor(server);
+            Catalina_Editor thread5 = new Catalina_Editor(server);
 
 
             new Thread(thread1).start();
             new Thread(thread2).start();
             new Thread(thread3).start();
+            new Thread(thread4).start();
+            new Thread(thread5).start();
 
 
     }
