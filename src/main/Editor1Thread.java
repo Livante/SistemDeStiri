@@ -13,7 +13,7 @@ public class Editor1Thread implements Runnable {
 
 	@Override
 	public void run() {
-		Editor editor = new Editor(server, "EDITOR_ONE");
+		Editor editor = new Editor(server, "Vasile Editor");
 		editor.publishNews("Science", "Monkey-pig hybrid",
 				"Created by Chinese scientists, this just proves that humans are weird.");
 		editor.publishNews("Crime", "How to spot a psychopath",

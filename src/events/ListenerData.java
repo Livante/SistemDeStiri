@@ -28,8 +28,8 @@ public class ListenerData {
         return filters.stream();
     }
     
-    public ListenerData(NewsEventListener listener){
-        listener = listener;
+    public ListenerData(NewsEventListener listen){
+        listener = listen;
         filters = new ArrayList<Predicate<News>>();
     }
 

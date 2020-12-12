@@ -14,7 +14,8 @@ public class Server {
 
     private Server(){
         newsLinkedList = new LinkedList<>();
-        serverThread = new Thread();
+        serverThread = new Thread(this::serverLoop);
+        serverThread.start();
     }
 
     private void serverLoop(){
