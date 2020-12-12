@@ -20,7 +20,7 @@ public class EventListenerManager {
             if(mapContainsListener(eventType, listenerData)){
                 listenerMap.computeIfPresent(eventType, (type,list) -> {
                     list.remove(listenerData);
-                    return list.isEmpty()?null:list;
+                    return list.isEmpty() ? null : list;
                 });
             }
         }

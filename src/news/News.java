@@ -2,8 +2,7 @@ package news;
 
 import java.util.Date;
 
-public class News
-{
+public class News {
     private final String title;
     private final Date publishdate;
     private final String category;
@@ -11,31 +10,30 @@ public class News
     private String content;
     private Date lastChangeDate;
 
-    public News(String category,String author,String title,String content)
-    {
-        this.title=title;
-        publishdate=new Date();
+    public News(String category,String author,String title,String content) {
         this.category=category;
         this.author=author;
         this.content=content;
+        this.title=title;
+
+        publishdate = new Date();
+        lastChangeDate = new Date();
+    }
+
+    public String getCategory() {
+        return category;
+    }
+
+    private void updateLastChangeDate() {
         lastChangeDate=new Date();
     }
 
-    public String getCategory()
-    {
-        return category;
-    }
-    private void updateLastChangeDate()
-    {
-        lastChangeDate=new Date();
-    }
-    public void changeContent(String content)
-    {
+    public void changeContent(String content) {
         this.content = content;
         updateLastChangeDate();
     }
-    public String toString()
-    {
+
+    public String toString() {
         StringBuilder messageBuilder = new StringBuilder();
 		messageBuilder.append("[" + this.category + "]: ").append(this.title);
 		messageBuilder.append("\n");
@@ -46,16 +44,12 @@ public class News
 		return messageBuilder.toString();
     }
 
-    public boolean Equals(Object Object)
-    {
-        if(Object instanceof News)
-        {
-            News newz = (News) Object;
-            return (newz.author == this.author && newz.title == title);
+    public boolean Equals(Object object) {
+        if(object instanceof News) {
+            News newz = (News) object;
+            boolean rez = newz.author == this.author && newz.title == title;
+            return rez;
         }
         return false;
     }
-
-
-
 }

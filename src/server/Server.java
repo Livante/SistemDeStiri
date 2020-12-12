@@ -12,13 +12,13 @@ public class Server {
     private final EventDispatcher eventDispatcher = new EventDispatcher();
     private final Object mutex = new Object();
 
-    private Server(){
+    private Server() {
         newsLinkedList = new LinkedList<>();
         serverThread = new Thread(this::serverLoop);
         serverThread.start();
     }
 
-    private void serverLoop(){
+    private void serverLoop() {
         while(!Thread.currentThread().isInterrupted()){
             try {
 
@@ -29,23 +29,20 @@ public class Server {
         }
     }
 
-    public static Server getServerInstance(){
+    public static Server getServerInstance() {
          if(serverInstance == null) {
              serverInstance = new Server();
          }
          return serverInstance;
     }
 
-    public void publishNews(News news, NewsEventListener newsEventListener){
-        synchronized (mutex){
+    public void publishNews(News news, NewsEventListener newsEventListener) {
+        synchronized (mutex) {
             newsLinkedList.addFirst(news);
         }
 
         ListenerData listenerData = new ListenerData(newsEventListener);
         listenerData.addFilter(item -> news.equals(item));
-
-
-
         eventDispatcher.register(EventFlag.STIRI_CITITE, listenerData);
 
         NewsEvent newsEvent = new NewsEvent(EventFlag.STIRI_APARUTE, news);
@@ -61,10 +58,9 @@ public class Server {
         }
     }
 
-    public void deleteNews(News news){
+    public void deleteNews(News news) {
         synchronized (mutex) {
-            //newsLinkedList.removeIf(news::equals);
-            for(News news1 : newsLinkedList){
+            for(News news1 : newsLinkedList) {
                 if(news.equals(news1)) {
                     newsLinkedList.remove(news1);
                 }
@@ -74,7 +70,7 @@ public class Server {
         eventDispatcher.publishEvent(newsEvent);
     }
 
-    public void subscribeToNewsByType(NewsEventListener newsEventListener, String newsType){
+    public void subscribeToNewsByType(NewsEventListener newsEventListener, String newsType) {
         ListenerData listenerData = new ListenerData(newsEventListener);
         listenerData.addFilter(event -> event.getCategory().equals(newsType));
 
