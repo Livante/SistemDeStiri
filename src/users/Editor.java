@@ -12,13 +12,15 @@ public class Editor implements NewsEventListener
 
     public Editor(Server server, String name)
     {
-        this.name=name;
-        this.server=server;
+        this.name = name;
+        this.server = server;
     }
-    public void subscribeToNews(String type)
-    {
-        server.subscribeToNewsByType(this,type);
+
+    public void publishNews(String category, String type, String content){
+        News news = new News(category, this.name, type, content);
+        server.publishNews(news, this);
     }
+
     @Override
     public void handleEvent(NewsEvent event)
     {
