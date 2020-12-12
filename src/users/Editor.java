@@ -1,9 +1,9 @@
 package users;
 
-import Server.Server;
-import Events.NewsEvent;
-import News.NewsEventListener;
-import News.News;
+import server.Server;
+import events.NewsEvent;
+import events.NewsEventListener;
+import news.News;
 
 public class Editor implements NewsEventListener
 {

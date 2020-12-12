@@ -43,6 +43,8 @@ public class Server {
         ListenerData listenerData = new ListenerData(newsEventListener);
         listenerData.addFilter(item -> news.equals(item));
 
+
+
         eventDispatcher.register(EventFlag.STIRI_CITITE, listenerData);
 
         NewsEvent newsEvent = new NewsEvent(EventFlag.STIRI_APARUTE, news);
@@ -52,6 +54,7 @@ public class Server {
     public void updateNews(News news){
         synchronized (mutex){
             newsLinkedList.stream().filter(news::equals).map(item ->news);
+
             NewsEvent newsEvent = new NewsEvent(EventFlag.STIRI_SCHIMBATE, news);
             eventDispatcher.publishEvent(newsEvent);
         }
@@ -59,7 +62,12 @@ public class Server {
 
     public void deleteNews(News news){
         synchronized (mutex) {
-            newsLinkedList.removeIf(news::equals);
+            //newsLinkedList.removeIf(news::equals);
+            for(News news1 : newsLinkedList){
+                if(news.equals(news1)) {
+                    newsLinkedList.remove(news1);
+                }
+            }
         }
         NewsEvent newsEvent = new NewsEvent(EventFlag.STIRI_STERSE, news);
         eventDispatcher.publishEvent(newsEvent);

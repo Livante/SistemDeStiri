@@ -2,7 +2,7 @@ package news;
 
 import java.util.Date;
 
-public class news
+public class News
 {
     private final String title;
     private final Date publishdate;
@@ -21,7 +21,7 @@ public class news
         lastChangeDate=new Date();
     }
 
-    public getCategory()
+    public String getCategory()
     {
         return category;
     }
@@ -48,10 +48,10 @@ public class news
 
     public boolean Equals(Object Object)
     {
-        if(object instanceof News)
+        if(Object instanceof News)
         {
-            News newz = (News) object;
-            return newz.author==this.author&&newz.title=title;
+            News newz = (News) Object;
+            return (newz.author == this.author && newz.title == title);
         }
         return false;
     }

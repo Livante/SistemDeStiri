@@ -6,9 +6,9 @@ public class NewsEvent {
 	private final News content;
 	private final EventFlag type;
 
-	public NewsEvent(EventFlag type, News content) {
-		content = content;
-		type = type;
+	public NewsEvent(EventFlag tip, News continut) {
+		content = continut;
+		type = tip;
 	}
 
 	public News getContent() {
