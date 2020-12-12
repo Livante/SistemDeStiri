@@ -1,39 +1,25 @@
 package news;
 
-import java.util.Date;
-
 public class News
 {
     private final String title;
-    private final Date publishdate;
     private final String category;
     private final String author;
     private String content;
-    private Date lastChangeDate;
 
     public News(String category,String author,String title,String content)
     {
         this.title=title;
-        publishdate=new Date();
         this.category=category;
         this.author=author;
         this.content=content;
-        lastChangeDate=new Date();
     }
 
     public String getCategory()
     {
         return category;
     }
-    private void updateLastChangeDate()
-    {
-        lastChangeDate=new Date();
-    }
-    public void changeContent(String content)
-    {
-        this.content = content;
-        updateLastChangeDate();
-    }
+
     public String toString()
     {
         StringBuilder messageBuilder = new StringBuilder();
@@ -55,7 +41,5 @@ public class News
         }
         return false;
     }
-
-
 
 }
