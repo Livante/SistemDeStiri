@@ -14,7 +14,7 @@ public class George implements Runnable {
     @Override
     public void run() {
         Reader reader = new Reader(server, "George");
-        reader.subscribeToNews("Politica");
-        reader.subscribeToNews("Pandemie");
+        reader.abonare("Politica");
+        reader.abonare("Pandemie");
     }
 }

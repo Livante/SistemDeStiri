@@ -36,7 +36,4 @@ public class ListenerData {
     public void addFilter(Predicate<News> filter){
         filters.add(filter);
     }
-
-
-
 }

@@ -8,7 +8,7 @@ import java.util.stream.Stream;
 import news.News;
 
 public class EventDispatcher {
-	private final EventListenerManager eventListener = new EventListenerManager();
+	private final EventManager eventListener = new EventManager();
 	private final BlockingQueue<NewsEvent> eventsQueue = new LinkedBlockingQueue<NewsEvent>();
 	private final Thread dispatchThread;
 
@@ -25,7 +25,7 @@ public class EventDispatcher {
 		eventListener.unregister(eventType, listenerData);
 	}
 
-	public void publishEvent(NewsEvent event) {
+	public void publicareStire(NewsEvent event) {
 		if (event != null) {
 			eventsQueue.add(event);
 		}

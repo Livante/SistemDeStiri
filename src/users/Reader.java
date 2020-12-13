@@ -14,8 +14,8 @@ public class Reader implements NewsEventListener {
         this.server = server;
     }
 
-    public void subscribeToNews(String type) {
-        server.subscribeToNewsByType(this,type);
+    public void abonare(String type) {
+        server.abonareDupaTip(this,type);
     }
 
     @Override
@@ -23,6 +23,6 @@ public class Reader implements NewsEventListener {
         News content = event.getContent();
         String eventDescription = event.getEventDescription();
 
-        System.out.println("[" + name + "]: " + eventDescription + "\n" + content);
+        System.out.println(name +": "+ eventDescription + "\n\t" + content);
     }
 }

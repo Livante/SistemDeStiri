@@ -7,29 +7,22 @@ public class News
     private final String author;
     private String content;
 
-    public News(String category,String author,String title,String content)
+    public News(String categorie,String autor,String titlu,String continut)
     {
-        this.title=title;
-        this.category=category;
-        this.author=author;
-        this.content=content;
+        title=titlu;
+        category=categorie;
+        author=autor;
+        content=continut;
     }
 
+    public String getTitle()
+    {
+        return title;
+    }
+    
     public String getCategory()
     {
         return category;
-    }
-
-    public String toString()
-    {
-        StringBuilder messageBuilder = new StringBuilder();
-		messageBuilder.append("[" + this.category + "]: ").append(this.title);
-		messageBuilder.append("\n");
-		messageBuilder.append("Written by: " + this.author);
-		messageBuilder.append("\n");
-		messageBuilder.append(this.content);
-
-		return messageBuilder.toString();
     }
 
     public boolean Equals(Object Object)
@@ -37,9 +30,15 @@ public class News
         if(Object instanceof News)
         {
             News newz = (News) Object;
-            return (newz.author == this.author && newz.title == title);
+            return (newz.author == author && newz.title == title);
         }
         return false;
+    }
+    
+    public String toString()
+    {
+    	return category+": "+title+" by "+ author+"\n\t "+content+"\n";
+    	
     }
 
 }

@@ -14,7 +14,7 @@ public class Schnitzel implements Runnable {
     @Override
     public void run() {
         Reader reader = new Reader(server, "Schnitzel");
-        reader.subscribeToNews("Politica");
-        reader.subscribeToNews("Bucatarie");
+        reader.abonare("Politica");
+        reader.abonare("Bucatarie");
     }
 }

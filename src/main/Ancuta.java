@@ -14,6 +14,6 @@ public class Ancuta implements Runnable {
     @Override
     public void run() {
         Reader reader = new Reader(server, "Ancuta");
-        reader.subscribeToNews("Politica");
+        reader.abonare("Politica");
     }
 }

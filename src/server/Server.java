@@ -8,7 +8,15 @@ import java.util.LinkedList;
 public class Server {
     private static Server serverInstance;
     private LinkedList<News> newsLinkedList;
-    private Thread serverThread;
+    public LinkedList<News> getNewsLinkedList() {
+		return newsLinkedList;
+	}
+
+	public void setNewsLinkedList(LinkedList<News> newsLinkedList) {
+		this.newsLinkedList = newsLinkedList;
+	}
+
+	private Thread serverThread;
     private final EventDispatcher eventDispatcher = new EventDispatcher();
     private final Object mutex = new Object();
 
@@ -46,35 +54,21 @@ public class Server {
         eventDispatcher.register(EventFlag.STIRI_CITITE, listenerData);
 
         NewsEvent newsEvent = new NewsEvent(EventFlag.STIRI_APARUTE, news);
-        eventDispatcher.publishEvent(newsEvent);
+        eventDispatcher.publicareStire(newsEvent);
     }
 
-    public void updateNews(News news){
-        synchronized (mutex){
-            newsLinkedList.stream().filter(news::equals).map(item ->news);
-
-            NewsEvent newsEvent = new NewsEvent(EventFlag.STIRI_SCHIMBATE, news);
-            eventDispatcher.publishEvent(newsEvent);
+    public void deleteNews(News news){
+        synchronized(mutex){
+            newsLinkedList.removeIf(news::equals);
         }
+        NewsEvent event = new NewsEvent(EventFlag.STIRI_STERSE, news);
+        eventDispatcher.publicareStire(event);
     }
 
-    public void deleteNews(News news) {
-        synchronized (mutex) {
-            for(News news1 : newsLinkedList) {
-                if(news.equals(news1)) {
-                    newsLinkedList.remove(news1);
-                }
-            }
-        }
-        NewsEvent newsEvent = new NewsEvent(EventFlag.STIRI_STERSE, news);
-        eventDispatcher.publishEvent(newsEvent);
-    }
-
-    public void subscribeToNewsByType(NewsEventListener newsEventListener, String newsType) {
+    public void abonareDupaTip(NewsEventListener newsEventListener, String newsType) {
         ListenerData listenerData = new ListenerData(newsEventListener);
         listenerData.addFilter(event -> event.getCategory().equals(newsType));
 
-        eventDispatcher.register(EventFlag.STIRI_SCHIMBATE, listenerData);
         eventDispatcher.register(EventFlag.STIRI_APARUTE, listenerData);
         eventDispatcher.register(EventFlag.STIRI_STERSE, listenerData);
     }

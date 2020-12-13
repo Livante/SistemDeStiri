@@ -3,7 +3,7 @@ package events;
 import java.util.*;
 import java.util.stream.Stream;
 
-public class EventListenerManager {
+public class EventManager {
 
     private final Object mutex = new Object();
     private Map<EventFlag, List<ListenerData>> listenerMap = new HashMap<>();
